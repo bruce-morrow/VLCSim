@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from devices import LED
+from VLCSim.devices import LED
 
 
 class TestLED(unittest.TestCase):

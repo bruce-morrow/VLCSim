@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
 
-from channels import LOSChannel
-from devices import LED, PhotoDiode
+from VLCSim.channels import LOSChannel
+from VLCSim.devices import LED, PhotoDiode
 
 
 class TestLOSChannel(unittest.TestCase):

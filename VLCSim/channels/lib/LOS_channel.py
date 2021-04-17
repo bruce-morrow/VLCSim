@@ -1,5 +1,5 @@
-from channels import AbstractChannel
-from devices import LED, PhotoDiode
+from VLCSim.channels import AbstractChannel
+from VLCSim.devices import LED, PhotoDiode
 
 from typing import Union
 import numpy as np

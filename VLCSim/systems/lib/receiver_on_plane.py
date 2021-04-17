@@ -1,6 +1,6 @@
-from systems import AbstractSystem
-from channels import LOSChannel
-from utils import math_utils
+from VLCSim.systems import AbstractSystem
+from VLCSim.channels import LOSChannel
+from VLCSim.utils import math_utils
 
 from typing import Tuple
 import numpy as np

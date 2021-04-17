@@ -2,7 +2,7 @@ import abc
 import numpy as np
 from typing import Union
 
-from channels import AbstractChannel
+from VLCSim.channels import AbstractChannel
 
 
 class AbstractSystem(abc.ABC):

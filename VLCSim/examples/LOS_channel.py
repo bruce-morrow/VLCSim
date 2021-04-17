@@ -1,7 +1,7 @@
-from devices import LED, PhotoDiode
-from channels import LOSChannel
-from systems import ReceiverOnPlaneSystem
-from utils import plot_utils
+from VLCSim.devices import LED, PhotoDiode
+from VLCSim.channels import LOSChannel
+from VLCSim.systems import ReceiverOnPlaneSystem
+from VLCSim.utils import plot_utils
 
 import numpy as np
 

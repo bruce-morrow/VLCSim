@@ -1,9 +1,9 @@
 import unittest
 import numpy as np
 
-from systems import ReceiverOnPlaneSystem
-from channels import LOSChannel
-from devices import LED, PhotoDiode
+from VLCSim.systems import ReceiverOnPlaneSystem
+from VLCSim.channels import LOSChannel
+from VLCSim.devices import LED, PhotoDiode
 
 
 class TestReceiverOnPlaneSystem(unittest.TestCase):

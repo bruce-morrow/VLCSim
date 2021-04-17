@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from utils import math_utils
+from VLCSim.utils import math_utils
 
 
 class TestMathUtils(unittest.TestCase):
