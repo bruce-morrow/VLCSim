@@ -244,4 +244,9 @@ class PhotoDiode:
         """
 
         lambdas = self.get_photon_fluctuation_noise_variance(wavelength, average_power, bandwidth)
-        return np.random.poisson(lam=lambdas, size=(num_values, lambdas.size)).T
+        size: int
+        if type(lambdas) == float:
+            size = 1
+        else:
+            size = lambdas.size
+        return np.random.poisson(lam=lambdas, size=(num_values, size)).T
