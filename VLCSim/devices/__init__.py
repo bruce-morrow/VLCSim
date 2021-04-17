@@ -7,5 +7,6 @@ LED
 PhotoDiode
 """
 
-from devices.lib.LED import LED
-from devices.lib.photo_diode import PhotoDiode
+from VLCSim.devices.lib.LED import LED
+from VLCSim.devices.lib.photo_diode import PhotoDiode
+

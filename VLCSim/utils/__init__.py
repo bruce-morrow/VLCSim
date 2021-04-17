@@ -7,5 +7,5 @@ math_utils
 plot_utils
 """
 
-from utils.lib import math_utils
-from utils.lib import plot_utils
+from VLCSim.utils.lib import math_utils
+from VLCSim.utils.lib import plot_utils

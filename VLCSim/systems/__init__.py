@@ -9,5 +9,5 @@ AbstractSystem
 ReceiverOnPlaneSystem
 """
 
-from systems.lib.abstract_system import AbstractSystem
-from systems.lib.receiver_on_plane import ReceiverOnPlaneSystem
+from VLCSim.systems.lib.abstract_system import AbstractSystem
+from VLCSim.systems.lib.receiver_on_plane import ReceiverOnPlaneSystem

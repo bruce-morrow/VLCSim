@@ -9,5 +9,5 @@ AbstractChannel
 LOSChannel
 """
 
-from channels.lib.abstract_channel import AbstractChannel
-from channels.lib.LOS_channel import LOSChannel
+from VLCSim.channels.lib.abstract_channel import AbstractChannel
+from VLCSim.channels.lib.LOS_channel import LOSChannel
