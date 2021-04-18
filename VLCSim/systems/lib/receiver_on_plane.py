@@ -29,7 +29,7 @@ class ReceiverOnPlaneSystem(AbstractSystem):
     """
 
     def __init__(self, ul_corner: Tuple[float, float], lr_corner: Tuple[float, float], num_points_axis: Tuple[int, int],
-                 ch: LOSChannel, rx, txs: dict):
+                 ch: LOSChannel, rx, txs: dict, equivalent_load_resistance: float, bandwidth: float):
         """
         Parameters
         ----------
@@ -47,8 +47,13 @@ class ReceiverOnPlaneSystem(AbstractSystem):
             Dictionary where the keys are transmitter objects and the values are lists of tuples, where each tuple has
             four elements. The first three are the x, y, and z coordinates in meters and the forth is the angle of
             maximum emission angle in radians in relation ot the normal line
+        equivalent_load_resistance : float
+            The equivalent input resistance, in Ohms, provided bu the electric circuit connected to the receiver, i.e.
+            the resistance that the receiver sees between its outputs. Must be strictly positive
+        bandwidth : float
+            The bandwidth, in Hertz, of the electric circuit connected to the output of the receiver
         """
-        super().__init__(ch, rx, txs)
+        super().__init__(ch, rx, txs, equivalent_load_resistance, bandwidth)
         self._upper_left_corner = ul_corner
         self._lower_right_corner = lr_corner
         self._num_points_axis = num_points_axis
