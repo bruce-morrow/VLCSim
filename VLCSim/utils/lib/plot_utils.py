@@ -18,6 +18,8 @@ def plot_3d_and_top_views(
         y_matrix: np.array,
         z_matrix: np.array,
         labels: Tuple[str, str, str],
+        axis_tooltips: Tuple[str, str, str],
+        axis_units: Tuple[str, str, str],
         title: str,
         db=False
 ) -> None:
@@ -34,6 +36,10 @@ def plot_3d_and_top_views(
         The mesh grid z coordinates matrix
     labels : Tuple[str, str, str]
         The labels for the x, y and z axis respectively
+    axis_tooltips : Tuple[str, str, str]
+        The tooltips' variables names for the x, y and z axis respectively
+    axis_units : Tuple[str, str, str]
+        The measurement units for the x, y and z axis respectively
     title : str
         The plot title
     db : bool
@@ -52,6 +58,9 @@ def plot_3d_and_top_views(
         z_values = 10 * np.log10(z_matrix)
     else:
         z_values = z_matrix
+    hover_template = axis_tooltips[0] + ": %{x:.3s}" + axis_units[0] + "<br>" + \
+                     axis_tooltips[1] + ": %{y:.3s}" + axis_units[1] + "<br>" + \
+                     axis_tooltips[2] + ": %{z:.3s}" + axis_units[2]
     fig.add_trace(
         go.Surface(
             x=x_matrix,
@@ -60,7 +69,7 @@ def plot_3d_and_top_views(
             colorscale='Plasma',
             showscale=False,
             name='3D view',
-            hovertemplate="x: %{x:.3s}m<br>y: %{y:.3s}m<br>power: %{z:.3s}W"
+            hovertemplate=hover_template
         ),
         row=1, col=1
     )
@@ -73,8 +82,8 @@ def plot_3d_and_top_views(
             showscale=True,
             colorscale='Plasma',
             name='Top view',
-            hovertemplate="x: %{x:.3s}m<br>y: %{y:.3s}m<br>power: %{z:.3s}W",
-            colorbar=dict(title='power level', exponentformat='SI', ticksuffix='W'),
+            hovertemplate=hover_template,
+            colorbar=dict(title=axis_tooltips[2], exponentformat='SI', ticksuffix=axis_units[2]),
         ),
         row=1, col=2
     )
