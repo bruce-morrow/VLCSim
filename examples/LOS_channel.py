@@ -7,6 +7,11 @@ import numpy as np
 
 
 def main():
+    """
+    A simple test with one (txs1) or four (txs2) LED transmitters pointing down at a plane with a photodiode as a
+    receiver and with the LOS channel model. Plots the power, photocurrent, SNR and BER on the receiver.
+    """
+
     led = LED(
         power=65e-3,
         power_half_angle=np.deg2rad(30.0),
