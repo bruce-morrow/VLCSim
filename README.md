@@ -1,4 +1,15 @@
 # VLCSim
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=bugs)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=code_smells)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=alert_status)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=security_rating)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+
+
 A Visible Light Communications (VLC) simulator under development as an undergrad thesis for the Electrical Engineering 
 program of the [Universidade Federal de Minas Gerais (UFMG)](https://ufmg.br) in Brazil. The work is being supervised 
 by Professor Andrea Chiuchiarelli, who is a fellow of the [Laboratory for Optronics and Microtechnology Applications 
