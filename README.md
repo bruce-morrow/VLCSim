@@ -7,6 +7,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=security_rating)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=coverage)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bruce-morrow_VLCSim&metric=alert_status)](https://sonarcloud.io/dashboard?id=bruce-morrow_VLCSim)
 
 
