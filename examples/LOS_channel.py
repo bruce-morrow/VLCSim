@@ -20,17 +20,17 @@ def main():
     )
     channel = LOSChannel()
     txs1 = {led: [(0.0, 0.0, 30e-2, 0.0)]}
-    txs2 = {led: [(-4e-3, -4e-3, 5e-3, 0.0),
-                  (-4e-3, 4e-3, 5e-3, 0.0),
-                  (4e-3, -4e-3, 5e-3, 0.0),
-                  (4e-3, 4e-3, 5e-3, 0.0)]}
+    txs2 = {led: [(-0.25, -0.25, 30e-2, 0.0),
+                  (-0.25, 0.25, 30e-2, 0.0),
+                  (0.25, -0.25, 30e-2, 0.0),
+                  (0.25, 0.25, 30e-2, 0.0)]}
     system = ReceiverOnPlaneSystem(
         ul_corner=(-0.5, 0.5),
         lr_corner=(0.5, -0.5),
         num_points_axis=(100, 100),
         ch=channel,
         rx=photo_diode,
-        txs=txs1,
+        txs=txs2,
         equivalent_load_resistance=65.4e3,
         bandwidth=4.5e6
     )
