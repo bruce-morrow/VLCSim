@@ -44,9 +44,10 @@ class ReceiverOnPlaneSystem(AbstractSystem):
         rx
             The receiver model object
         txs : dict
-            Dictionary where the keys are transmitter objects and the values are lists of tuples, where each tuple has
-            four elements. The first three are the x, y, and z coordinates in meters and the forth is the angle of
-            maximum emission angle in radians in relation ot the normal line
+            Dictionary where the keys are transmitter objects and the values are lists of tuples. Each tuple represents
+            the positioning of a transmitter of that type and is composed by two other tuples with three float values
+            each. The first internal tuple holds the x, y, and z coordinates in meters and the other the coordinates in
+            meters of a vector that points to maximum emission direction
         equivalent_load_resistance : float
             The equivalent input resistance, in Ohms, provided bu the electric circuit connected to the receiver, i.e.
             the resistance that the receiver sees between its outputs. Must be strictly positive
@@ -95,24 +96,23 @@ class ReceiverOnPlaneSystem(AbstractSystem):
         """
 
         rx_power = np.zeros(shape=self.plane_points.shape[:-1])
-        for tx, coords in self.transmitters.items():
-            for coord in coords:
-                point_arr = np.array(coord[:-1])
-                point_angle = coord[-1]
-                dists, phi, psi = self._get_point2plane_info(point_arr, point_angle)
+        for tx, positions in self.transmitters.items():
+            for (point_coords, point_direc) in positions:
+                dists, phi, psi = self._get_point2plane_info(point_coords, point_direc)
                 # add up the received power matrix emitted from each transmitter
                 rx_power += self.channel.calculate_rx_power(tx, self.receiver, phi, psi, dists)
         return rx_power
 
-    def _get_point2plane_info(self, point_arr: np.array, point_angle: float) -> Tuple[np.array, np.array, np.array]:
+    def _get_point2plane_info(self, point_coords: np.array, point_direc: np.array) -> \
+            Tuple[np.array, np.array, np.array]:
         """
         Calculates the distance, transmission and incidence angles from a point to every point on the plane.
 
         Parameters
         ----------
-        point_arr : np.array
+        point_coords : np.array
             An array with the point's x, y and z coordinates in meters
-        point_angle : float
+        point_direc : np.array
             The point's maximum power transmission angle, in radians, in relation to the plane's normal vector
 
         Returns
@@ -121,19 +121,10 @@ class ReceiverOnPlaneSystem(AbstractSystem):
             The distances, emission and incidence angles matrices, respectively
         """
 
-        dist_vecs = point_arr - self.plane_points
-        norm_vec = point_arr - np.array([point_arr[0], point_arr[1], 0])
+        dist_vecs = self.plane_points - point_coords
+        norm_vec = np.array([point_coords[0], point_coords[1], 0]) - point_coords
         norm_vec /= np.linalg.norm(norm_vec)
         distances = np.linalg.norm(dist_vecs, axis=2)
         psi = np.arccos(np.dot(dist_vecs, norm_vec) / distances)
-        phi: np.array
-        if point_angle != 0.0:
-            # FIXME: result is the same of when point_angle is zero
-            cos_ang = np.cos(point_angle)
-            sin_ang = np.sin(point_angle)
-            rotation_matrix = np.array([[cos_ang, -sin_ang, 0.0], [sin_ang, cos_ang, 0.0], [0.0, 0.0, 1.0]])
-            rot_dist_vecs = dist_vecs @ rotation_matrix.T
-            phi = np.arccos(np.dot(rot_dist_vecs, norm_vec) / distances)
-        else:
-            phi = psi.copy()
+        phi = np.arccos(np.dot(dist_vecs, point_direc) / (distances * np.linalg.norm(point_direc)))
         return distances, phi, psi

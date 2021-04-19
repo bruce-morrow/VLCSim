@@ -8,8 +8,8 @@ import numpy as np
 
 def main():
     """
-    A simple test with one (txs1) or four (txs2) LED transmitters pointing down at a plane with a photodiode as a
-    receiver and with the LOS channel model. Plots the power, photocurrent, SNR and BER on the receiver.
+    A simple test with one (txs1 and txs2) or four (txs3) LED transmitters pointing down at a plane with a photodiode as
+    a receiver and with the LOS channel model. Plots the power, photocurrent, SNR and BER on the receiver.
     """
 
     led = LED(
@@ -24,18 +24,19 @@ def main():
         external_quantum_efficiency=0.75
     )
     channel = LOSChannel()
-    txs1 = {led: [(0.0, 0.0, 30e-2, 0.0)]}
-    txs2 = {led: [(-0.25, -0.25, 30e-2, 0.0),
-                  (-0.25, 0.25, 30e-2, 0.0),
-                  (0.25, -0.25, 30e-2, 0.0),
-                  (0.25, 0.25, 30e-2, 0.0)]}
+    txs1 = {led: [((0.0, 0.0, 30e-2), (0.0, 0.0, 1.0))]}
+    txs2 = {led: [((0.0, 0.0, 30e-2), ((2**0.5)/2, -(2**0.5)/2, -3**0.5))]}
+    txs3 = {led: [((-0.25, -0.25, 30e-2), (0.0, 0.0, -1.0)),
+                  ((-0.25, 0.25, 30e-2), (0.0, 0.0, -1.0)),
+                  ((0.25, -0.25, 30e-2), (0.0, 0.0, -1.0)),
+                  ((0.25, 0.25, 30e-2), (0.0, 0.0, -1.0))]}
     system = ReceiverOnPlaneSystem(
         ul_corner=(-0.5, 0.5),
         lr_corner=(0.5, -0.5),
         num_points_axis=(100, 100),
         ch=channel,
         rx=photo_diode,
-        txs=txs2,
+        txs=txs3,
         equivalent_load_resistance=65.4e3,
         bandwidth=4.5e6
     )

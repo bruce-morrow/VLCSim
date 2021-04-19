@@ -13,9 +13,10 @@ class AbstractSystem(abc.ABC):
     Attributes
     ----------
     transmitters : dict
-        Dictionary where the keys are transmitter objects and the values are lists of tuples, where each tuple has four
-        elements. The first three are the x, y, and z coordinates in meters and the forth is the angle of maximum
-        emission angle in radians in relation ot the normal line
+        Dictionary where the keys are transmitter objects and the values are lists of tuples. Each tuple represents the
+        positioning of a transmitter of that type and is composed by two other tuples with three float values each. The
+        first internal tuple holds the x, y, and z coordinates in meters and the other the coordinates in meters of a
+        vector that points to maximum emission direction
     receiver
         The receiver model object
     channel : AbstractChannel
@@ -45,9 +46,10 @@ class AbstractSystem(abc.ABC):
         rx
             The receiver model object
         txs : dict
-            Dictionary where the keys are transmitter objects and the values are lists of tuples, where each tuple has
-            four elements. The first three are the x, y, and z coordinates in meters and the forth is the angle of
-            maximum emission angle in radians in relation ot the normal line
+            Dictionary where the keys are transmitter objects and the values are lists of tuples. Each tuple represents
+            the positioning of a transmitter of that type and is composed by two other tuples with three float values
+            each. The first internal tuple holds the x, y, and z coordinates in meters and the other the coordinates in
+            meters of a vector that points to maximum emission direction
         equivalent_load_resistance : float
             The equivalent input resistance, in Ohms, provided bu the electric circuit connected to the receiver, i.e.
             the resistance that the receiver sees between its outputs. Must be strictly positive

@@ -25,7 +25,7 @@ class TestReceiverOnPlaneSystem(unittest.TestCase):
             num_points_axis=(3, 3),
             ch=ch,
             rx=pd,
-            txs={led: [(0.0, 0.0, 5.0, 0.0)]},
+            txs={led: [((0.0, 0.0, 5.0), (0.0, 0.0, -1.0))]},
             equivalent_load_resistance=65.4e3,
             bandwidth=4.5e6
         )
@@ -70,26 +70,36 @@ class TestReceiverOnPlaneSystem(unittest.TestCase):
                          "The output for an array as input must also be an array.")
 
     def test__get_point2plane_info(self):
-        point = np.array([0.0, 0.0, 5])
-        point_angle = 0.0
+
+        # test with pointing down
+        point_coords = np.array([0.0, 0.0, 5.0])
+        point_direc = np.array([0.0, 0.0, -1.0])
         expected_distances = np.array([[8.660254037844386, 7.071067811865476, 8.660254037844386],
                                        [7.071067811865477, 5.000000000000000, 7.071067811865476],
                                        [8.660254037844386, 7.071067811865476, 8.660254037844386]])
         expected_ang = np.array([[0.9553166181245093, np.pi/4, 0.9553166181245093],
                                  [np.pi/4, 0.00000, np.pi/4],
                                  [0.9553166181245093, np.pi/4, 0.9553166181245093]])
-        distances, phi, psi = self._sys._get_point2plane_info(point_arr=point, point_angle=point_angle)
+        distances, phi, psi = self._sys._get_point2plane_info(point_coords, point_direc)
         np.testing.assert_array_almost_equal(distances, expected_distances)
         np.testing.assert_array_almost_equal(phi, expected_ang)
         np.testing.assert_array_almost_equal(psi, expected_ang)
-        # TODO: test when point angle is different than 0
+
+        # test with pointing 30° along the diagonal of the fourth quadrant
+        point_direc = np.array([(2**0.5)/2, -(2**0.5)/2, -3**0.5])
+        expected_phi = np.array([[np.pi/3, 1.199984, 1.478915],
+                                 [0.530859, np.pi/6, 1.199984],
+                                 [0.431718, 0.530859, np.pi/3]])
+        distances, phi, psi = self._sys._get_point2plane_info(point_coords, point_direc)
+        np.testing.assert_array_almost_equal(distances, expected_distances)
+        np.testing.assert_array_almost_equal(phi, expected_phi)
+        np.testing.assert_array_almost_equal(psi, expected_ang)
 
     def test_calculate_received_power(self):
         expected_powers = np.array([[5.93291150e-07, 1.63491816e-06, 5.93291150e-07],
                                     [1.63491816e-06, 9.24849374e-06, 1.63491816e-06],
                                     [5.93291150e-07, 1.63491816e-06, 5.93291150e-07]])
         np.testing.assert_array_almost_equal(self._sys.calculate_received_power(), expected_powers)
-        # TODO: test when point angle is different than 0
 
     def test_get_snr(self):
         values = self._sys.get_snr(temperature=300.0)
