@@ -1,8 +1,8 @@
 # VLCSim
 A Visible Light Communications (VLC) simulator under development as an undergrad thesis for the Electrical Engineering 
 program of the [Universidade Federal de Minas Gerais (UFMG)](https://ufmg.br) in Brazil. The work is being supervised 
-by Professor Andrea Chiuchiarelli from the Electronics Engineering Department and a fellow of the Laboratory for 
-[Optronics and Microtechnology Applications (OptMA Lab)](https://www.optmalab.com/).
+by Professor Andrea Chiuchiarelli, who is a fellow of the [Laboratory for Optronics and Microtechnology Applications 
+(OptMA Lab)](https://www.optmalab.com/) and a member of the Electronics Engineering Department.
 
 ## Project status
 Currently under development. 
