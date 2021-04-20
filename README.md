@@ -21,7 +21,9 @@ Currently under development.
 Take a look at the [examples](examples) directory.
 
 ## Tests
-Unit tests are placed inside the `tests` directory under each package of [VLCSim](VLCSim).
+Unit tests are placed inside the `tests` directory under each package of [VLCSim](VLCSim). All tests can be run on a 
+UNIX based OS by calling the [`run_tests.sh`](run_tests.sh) script, for you will need to have the `locate` command 
+installed.
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
