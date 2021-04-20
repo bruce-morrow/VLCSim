@@ -11,7 +11,8 @@ class TestLOSChannel(unittest.TestCase):
         self._ch = LOSChannel()
         self._led = LED(
             power=65e-3,
-            power_half_angle=np.deg2rad(45.0)
+            power_half_angle=np.deg2rad(45.0),
+            wavelength=620e-9
         )
         self._pd = PhotoDiode(
             area=7.45e-6,
